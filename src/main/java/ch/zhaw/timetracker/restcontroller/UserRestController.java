@@ -1,6 +1,6 @@
-public class UserRestController {
-    
-    import java.util.List;
+package ch.zhaw.timetracker.restcontroller;
+
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +53,4 @@ public class UserRestController {
 	
 }
 
-}
+
