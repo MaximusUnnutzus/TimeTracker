@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ch.zhaw.timetracker.entities.TimeEntry;
-import ch.zhaw.timetracker.entities.TimeEntryCreateDTO;
+
+import ch.zhaw.timetracker.model.TimeEntry;
+import ch.zhaw.timetracker.model.TimeEntryCreateDTO;
 import ch.zhaw.timetracker.repository.TimeEntryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,21 +21,21 @@ public class TimeEntryRestController {
 	@Autowired
 	TimeEntryRepository timeEntryRepository;
 
-	@PostMapping("/Time/create")
+	@PostMapping("/time/create")
 	public ResponseEntity<TimeEntry> createEntry(
 			@RequestBody TimeEntryCreateDTO uDTO) {
-		TimeEntry uDAO = new TimeEntry(uDTO.getStartPoint(),uDTO.getComment());
+		TimeEntry uDAO = new TimeEntry(uDTO.getStartPoint(),uDTO.getComment(), uDTO.getBookingType());
 		TimeEntry u = timeEntryRepository.save(uDAO);
 		return new ResponseEntity<>(u, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/Time/create")
+	@GetMapping("/time")
 	public ResponseEntity<List<TimeEntry>> getAllEntries() {
 		List<TimeEntry> allEntries = timeEntryRepository.findAll();
 		return new ResponseEntity<>(allEntries, HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/time/{id}")
 	public ResponseEntity<TimeEntry> getEntryById(@PathVariable String id) {
 		Optional<TimeEntry> oneEntry = timeEntryRepository.findById(id);
 		if (oneEntry.isPresent()) {

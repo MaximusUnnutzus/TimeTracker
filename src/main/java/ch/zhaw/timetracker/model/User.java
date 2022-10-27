@@ -1,4 +1,4 @@
-package ch.zhaw.timetracker.entities;
+package ch.zhaw.timetracker.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

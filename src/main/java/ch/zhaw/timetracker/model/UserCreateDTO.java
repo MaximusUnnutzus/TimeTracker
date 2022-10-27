@@ -1,4 +1,4 @@
-package ch.zhaw.timetracker.entities;
+package ch.zhaw.timetracker.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
