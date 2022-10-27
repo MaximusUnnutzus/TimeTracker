@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class TimeEntry {
 //Basic Variables 
     @Id
-    private String id;
+    private String timeEnryId;
     @NonNull
     LocalDateTime startPoint;
     Date endPoint;
