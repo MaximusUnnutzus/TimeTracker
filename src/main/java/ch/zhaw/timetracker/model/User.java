@@ -27,6 +27,10 @@ public class User {
 	private String password;
 	@NonNull
 	private String email;
+	
+	private List<String> entries = new ArrayList<>();
 
-	List<TimeEntry> entries = new ArrayList<TimeEntry>();
+	public void setEntries(String timeEntryId) {
+		this.entries.add(timeEntryId);
+	}
 }

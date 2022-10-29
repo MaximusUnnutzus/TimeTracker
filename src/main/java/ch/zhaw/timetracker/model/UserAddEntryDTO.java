@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UserAddEntryDTO {
 
-	private List<TimeEntry> entries;
+	private List<String> entries;
 }
