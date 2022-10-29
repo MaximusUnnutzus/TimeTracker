@@ -1,4 +1,4 @@
-package ch.zhaw.timetracker.entities;
+package ch.zhaw.timetracker.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,5 +11,4 @@ public class UserCreateDTO {
 	private String name;
 	private String password;
 	private String email;
-	
 }

@@ -1,4 +1,7 @@
-package ch.zhaw.timetracker.entities;
+package ch.zhaw.timetracker.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Document("user")
 public class User {
 	@Id
-	private String id;
+	private String userId;
 	@NonNull
 	private String loginname;
 	@NonNull
@@ -25,4 +28,9 @@ public class User {
 	@NonNull
 	private String email;
 	
+	private List<String> entries = new ArrayList<>();
+
+	public void setEntries(String timeEntryId) {
+		this.entries.add(timeEntryId);
+	}
 }

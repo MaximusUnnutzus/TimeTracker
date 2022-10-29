@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.zhaw.timetracker.entities.User;
-import ch.zhaw.timetracker.entities.UserCreateDTO;
+import ch.zhaw.timetracker.model.User;
+import ch.zhaw.timetracker.model.UserCreateDTO;
 import ch.zhaw.timetracker.repository.UserRepository;
 
 
@@ -23,7 +23,7 @@ public class UserRestController {
 	UserRepository UserRepository;
 
 	    // what is a DAO
-		@PostMapping("/user")
+		@PostMapping("/user/create")
 		public ResponseEntity<User> createUser(
 				@RequestBody UserCreateDTO uDTO) {
 			User uDAO = new User(uDTO.getLoginname(), uDTO.getSurname(), uDTO.getName(), uDTO.getPassword(), uDTO.getEmail());
@@ -33,7 +33,7 @@ public class UserRestController {
 		}
 	
 		// Get all Jobs
-		@GetMapping("/user")
+		@GetMapping("/users")
 		public ResponseEntity<List<User>> getAllUsers() {
 			List<User> allFree = UserRepository.findAll();
 			return new ResponseEntity<>(allFree, HttpStatus.OK);
