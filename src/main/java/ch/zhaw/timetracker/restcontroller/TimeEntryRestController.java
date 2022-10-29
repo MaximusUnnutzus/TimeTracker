@@ -14,19 +14,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping("api/timeEntry")
 public class TimeEntryRestController {
 	@Autowired
 	TimeEntryRepository timeEntryRepository;
 
-	@GetMapping("/time")
+	@GetMapping("/all")
 	public ResponseEntity<List<TimeEntry>> getAllEntries() {
 		List<TimeEntry> allEntries = timeEntryRepository.findAll();
 		return new ResponseEntity<>(allEntries, HttpStatus.OK);
 	}
 
-	@GetMapping("/time/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<TimeEntry> getEntryById(@PathVariable String id) {
 		Optional<TimeEntry> oneEntry = timeEntryRepository.findById(id);
 		if (oneEntry.isPresent()) {
@@ -36,7 +38,7 @@ public class TimeEntryRestController {
 		}
 	}
 
-	@DeleteMapping("/time/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteEntry(@PathVariable String id) {
 		Optional<TimeEntry> oneEntry = timeEntryRepository.findById(id);
 		if (oneEntry.isPresent()) {

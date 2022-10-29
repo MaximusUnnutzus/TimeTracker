@@ -1,6 +1,5 @@
 package ch.zhaw.timetracker.restcontroller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,13 +54,14 @@ public class TimeServiceController {
 
     @DeleteMapping("/delete/user/{userId}")
     public ResponseEntity<Integer> deleteUser(@PathVariable String userId) {
-        //Create a new Object
+        // Create a new Object
         Optional<User> optUser = userRepository.findById(userId);
-        //If the Object is present
+        // If the Object is present
         if (optUser.isPresent()) {
-            //Call the repository Method deleteById to delete the User
+            // Call the repository Method deleteById to delete the User
             userRepository.deleteById(userId);
-            //After that, delete the entries the user made and save the length of the array to a list
+            // After that, delete the entries the user made and save the length of the array
+            // to a list
             int numberOfDeletedEntries = (timeEntryRepository.deleteByUserId(userId)).size();
             return new ResponseEntity<>(numberOfDeletedEntries, HttpStatus.OK);
         }

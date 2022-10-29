@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.zhaw.timetracker.model.User;
@@ -18,12 +19,13 @@ import ch.zhaw.timetracker.repository.UserRepository;
 
 
 @RestController
+@RequestMapping("api/user")
 public class UserRestController {
 	@Autowired
 	UserRepository UserRepository;
 
 	    // what is a DAO
-		@PostMapping("/user/create")
+		@PostMapping("/create")
 		public ResponseEntity<User> createUser(
 				@RequestBody UserCreateDTO uDTO) {
 			User uDAO = new User(uDTO.getLoginname(), uDTO.getSurname(), uDTO.getName(), uDTO.getPassword(), uDTO.getEmail());
@@ -33,14 +35,14 @@ public class UserRestController {
 		}
 	
 		// Get all Jobs
-		@GetMapping("/users")
+		@GetMapping("/all")
 		public ResponseEntity<List<User>> getAllUsers() {
 			List<User> allFree = UserRepository.findAll();
 			return new ResponseEntity<>(allFree, HttpStatus.OK);
 		}
 	
 		// Get specific Job
-		@GetMapping("/user/{id}")
+		@GetMapping("/{id}")
 		public ResponseEntity<User> getJobById(@PathVariable String id) {
 			Optional<User> optUser = UserRepository.findById(id);
 			if (optUser.isPresent()) {
