@@ -12,6 +12,10 @@ import Account from "./pages/Misc/Account.svelte";
 
 import Zutaten from "./pages/Zutaten/Zutaten.svelte";
 
+
+//Dev
+import ToDo from "./pages/To Do/ToDo.svelte";
+import Overview from "./pages/Overview/Overview.svelte";
 export default {
   // Home
   "/": Dashboard,
@@ -30,4 +34,10 @@ export default {
 
   //Zutaten
   "/zutaten": Zutaten,
+
+  //To Do
+  "/todo": ToDo,
+
+  //Overview
+  "/overview":Overview,
 };

@@ -2,15 +2,13 @@
   import Router from "svelte-spa-router";
   import routes from "./routes";
   import { Sprout } from "lucide-svelte";
-  import { PlusCircle } from "lucide-svelte";
+  import { Hourglass } from "lucide-svelte";
 </script>
 
 <div class="all container">
-  <nav class="navbar navbar-expand-lg">
+
+  <nav class="navbar navbar-expand-lg flex-column">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#/">
-        <div class="special"><Sprout size="65" /></div>
-      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -28,18 +26,20 @@
             <a class="nav-link active" aria-current="page" href="#/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#/menus">Übersicht</a>
+            <a class="nav-link" href="#/overview">Overview</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#/createmenu"
-              ><PlusCircle size="60px" /></a
+            <a class="nav-link" href="#/menus">Menus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/createmenu"><Hourglass size="60px" /></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#/zutaten">Zutaten</a>
+            <a class="nav-link" href="#/zutaten">Tasks</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#/account">Account</a>
+            <a class="nav-link" href="#/account">Profil</a>
           </li>
         </ul>
       </div>

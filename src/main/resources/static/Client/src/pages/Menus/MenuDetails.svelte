@@ -35,6 +35,7 @@
   let halo = id;
 </script>
 
+<!--Props - bind:menu überschreibt den importierten Wert mit dem vorhandenen aus dieser Klasse -->
 <MenuManager
   bind:menu
   visibilityGerichte={visibility}
