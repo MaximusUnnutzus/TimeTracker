@@ -20,12 +20,14 @@ import lombok.RequiredArgsConstructor;
 public class TimeEntry {
 //Basic Variables 
     @Id
-    private String id;
+    private String timeEntryId;
     @NonNull
     LocalDateTime startPoint;
     Date endPoint;
     @NonNull
     String comment;
+    @NonNull
+    String userId;
 
 //States
     BookingState bookingState = BookingState.LAUFEND;

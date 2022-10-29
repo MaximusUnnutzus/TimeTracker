@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 public class TimeEntryCreateDTO {
 	private LocalDateTime startPoint;
 	private String comment;
+	//wird vom Frontend anhand des localStorage mitgegeben
+	private String userId;
 	private BookingType bookingType;	
 }
