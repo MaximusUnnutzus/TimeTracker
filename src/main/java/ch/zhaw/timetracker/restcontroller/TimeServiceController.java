@@ -1,11 +1,14 @@
 package ch.zhaw.timetracker.restcontroller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ch.zhaw.timetracker.model.TimeEntry;
 import ch.zhaw.timetracker.model.TimeEntryCreateDTO;
 import ch.zhaw.timetracker.model.User;
+import ch.zhaw.timetracker.model.UserDeleteDTO;
 import ch.zhaw.timetracker.repository.TimeEntryRepository;
 import ch.zhaw.timetracker.repository.UserRepository;
 import ch.zhaw.timetracker.service.TimeService;
@@ -32,6 +36,7 @@ public class TimeServiceController {
     TimeService timeService;
 
     // Zeitbuchung erstellen + einem User zuweisen
+    @CrossOrigin (origins="*")
     @PostMapping("/create")
     public ResponseEntity<TimeEntry> createEntry(@RequestBody TimeEntryCreateDTO tDTO) {
         try {
@@ -51,21 +56,27 @@ public class TimeServiceController {
             return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         }
     }
-
+    @CrossOrigin(origins="*")
     @DeleteMapping("/delete/user/{userId}")
-    public ResponseEntity<Integer> deleteUser(@PathVariable String userId) {
+    public ResponseEntity<Integer> deleteUser(@PathVariable UserDeleteDTO userDeleteDTO) {
         // Create a new Object
-        Optional<User> optUser = userRepository.findById(userId);
+        Optional<User> optUser = userRepository.findById(userDeleteDTO.getUserId());
         // If the Object is present
         if (optUser.isPresent()) {
             // Call the repository Method deleteById to delete the User
-            userRepository.deleteById(userId);
+            userRepository.deleteById(userDeleteDTO.getUserId());
             // After that, delete the entries the user made and save the length of the array
             // to a list
-            int numberOfDeletedEntries = (timeEntryRepository.deleteByUserId(userId)).size();
+            int numberOfDeletedEntries = (timeEntryRepository.deleteByUserId(userDeleteDTO.getUserId())).size();
             return new ResponseEntity<>(numberOfDeletedEntries, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @CrossOrigin (origins="*")
+    @GetMapping("/getAll/{userId}")
+    public ResponseEntity<List<TimeEntry>> getEntriesbyUser(@PathVariable String userId) {
+        List<TimeEntry> allEntries = timeEntryRepository.findByUserId(userId);
+        return new ResponseEntity<>(allEntries, HttpStatus.CREATED);
     }
 
 }

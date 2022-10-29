@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class UserRestController {
 	@Autowired
 	UserRepository UserRepository;
 
-	    // what is a DAO
+		@CrossOrigin(origins="*")
 		@PostMapping("/create")
 		public ResponseEntity<User> createUser(
 				@RequestBody UserCreateDTO uDTO) {
@@ -35,6 +36,7 @@ public class UserRestController {
 		}
 	
 		// Get all Jobs
+		@CrossOrigin(origins="*")
 		@GetMapping("/all")
 		public ResponseEntity<List<User>> getAllUsers() {
 			List<User> allFree = UserRepository.findAll();
@@ -42,6 +44,7 @@ public class UserRestController {
 		}
 	
 		// Get specific Job
+		@CrossOrigin(origins="*")
 		@GetMapping("/{id}")
 		public ResponseEntity<User> getJobById(@PathVariable String id) {
 			Optional<User> optUser = UserRepository.findById(id);

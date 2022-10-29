@@ -11,6 +11,7 @@ import ch.zhaw.timetracker.model.TimeEntry;
 
 import ch.zhaw.timetracker.repository.TimeEntryRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,12 +23,14 @@ public class TimeEntryRestController {
 	@Autowired
 	TimeEntryRepository timeEntryRepository;
 
+	@CrossOrigin(origins="*")
 	@GetMapping("/all")
 	public ResponseEntity<List<TimeEntry>> getAllEntries() {
 		List<TimeEntry> allEntries = timeEntryRepository.findAll();
 		return new ResponseEntity<>(allEntries, HttpStatus.OK);
 	}
 
+	@CrossOrigin(origins="*")
 	@GetMapping("/{id}")
 	public ResponseEntity<TimeEntry> getEntryById(@PathVariable String id) {
 		Optional<TimeEntry> oneEntry = timeEntryRepository.findById(id);
@@ -38,6 +41,7 @@ public class TimeEntryRestController {
 		}
 	}
 
+	@CrossOrigin(origins="*")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteEntry(@PathVariable String id) {
 		Optional<TimeEntry> oneEntry = timeEntryRepository.findById(id);

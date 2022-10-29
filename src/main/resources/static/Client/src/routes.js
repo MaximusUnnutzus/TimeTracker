@@ -39,5 +39,5 @@ export default {
   "/todo": ToDo,
 
   //Overview
-  "/overview":Overview,
+  "/overview/:id":Overview,
 };

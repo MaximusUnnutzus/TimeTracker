@@ -11,4 +11,7 @@ import ch.zhaw.timetracker.model.TimeEntry;
 public interface TimeEntryRepository extends MongoRepository<TimeEntry, String> {
     
     List<TimeEntry> deleteByUserId(String userId);
+
+    List<TimeEntry> findByUserId (String userId);
+   
 }
