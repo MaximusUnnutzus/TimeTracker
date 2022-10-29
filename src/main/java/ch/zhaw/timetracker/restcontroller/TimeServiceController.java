@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mongodb.internal.connection.Time;
-
 import ch.zhaw.timetracker.model.TimeEntry;
 import ch.zhaw.timetracker.model.TimeEntryCreateDTO;
 import ch.zhaw.timetracker.model.User;

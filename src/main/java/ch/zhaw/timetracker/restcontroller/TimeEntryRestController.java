@@ -11,6 +11,7 @@ import ch.zhaw.timetracker.model.TimeEntry;
 
 import ch.zhaw.timetracker.repository.TimeEntryRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -30,6 +31,17 @@ public class TimeEntryRestController {
 		Optional<TimeEntry> oneEntry = timeEntryRepository.findById(id);
 		if (oneEntry.isPresent()) {
 			return new ResponseEntity<>(oneEntry.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@DeleteMapping("/time/{id}")
+	public ResponseEntity<String> deleteEntry(@PathVariable String id) {
+		Optional<TimeEntry> oneEntry = timeEntryRepository.findById(id);
+		if (oneEntry.isPresent()) {
+			timeEntryRepository.deleteById(id);
+			return new ResponseEntity<>(id, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
